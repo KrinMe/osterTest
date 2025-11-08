@@ -16,6 +16,7 @@ program define osterTest, rclass
         di as err "Variable `xvar' not found in last regression."
         exit 198
     }
+	capture scalar delta = r(delta)
 
     quietly {
         scalar se_x = _se[`xvar']
@@ -31,6 +32,7 @@ program define osterTest, rclass
     di as txt "95% CI   = [" %9.4f lb_x " , " %9.4f ub_x "]"
     di as txt "r        = " as res %9.4f `r'
     di as txt "r in CI? = " as res r_in_ci
+    di as txt "delta    = " as res delta
 
     return scalar b    = b_x
     return scalar se   = se_x
@@ -38,10 +40,14 @@ program define osterTest, rclass
     return scalar ub   = ub_x
     return scalar r    = `r'
     return scalar inCI = r_in_ci
+	return scalar delta= delta
 
     if `"`out'"' != "" {
         outreg2 using `"`out'"', replace keep(`xvar') ///
             addstat("coef", b_x, "95% LB", lb_x, "95% UB", ub_x, ///
-                    "r", `r', "r in 95% CI", r_in_ci)
+                    "r", `r', "r in 95% CI", r_in_ci, "delta", delta)
+
     }
+
 end
+
