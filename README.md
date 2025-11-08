@@ -1,2 +1,3 @@
 # osterTest
-This is an AI-generated command. osterTest is a post-estimation utility mainly intended for Oster robustness analysis or selection-bias checks, allowing you to quickly inspect and export the coefficient (β) of the key explanatory variable in a regression.
+This is an AI-generated command. **osterTest** is a post-estimation utility mainly intended for Oster robustness analysis or selection-bias checks, allowing you to quickly inspect and export the coefficient (β) of the key explanatory variable in a regression. After you have run a regression, the command automatically reads the estimated coefficient and standard error of the specified variable, computes its 95% confidence interval, and checks whether the user-specified beta value `a()` falls within that interval, thereby helping you judge whether this first-stage regression meets the desired standard. The command also supports exporting the results via `outreg2`.
+
